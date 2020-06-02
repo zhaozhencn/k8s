@@ -198,6 +198,19 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
   ```
   kubectl apply -f ./flannel/kube-flannel.yml
   ```
+  
+- install selinux tools
+
+  ```
+  sudo apt install policycoreutils selinux-utils selinux-basics
+  ``` 
+
+- set selinux `/etc/selinux/config` to disabled presistent 
+
+  ```
+  SELINUX=disabled
+  ```
+- disable swap partition comment line contain swap in file `/etc/fstab`
 
 - verify worker has been joined to cluster 
 
