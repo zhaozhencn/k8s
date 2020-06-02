@@ -170,7 +170,7 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
 
   ```
   sudo apt install policycoreutils selinux-utils selinux-basics
-  ``` 
+  ```
 
 - set selinux `/etc/selinux/config` to disabled presistent 
 
@@ -181,7 +181,7 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 - verify master has been finished successfully
 
-### 5 Install k8s worker
+### 5 Install k8s worker and add node to cluster
 
 - execute step 1~3
 
@@ -203,18 +203,47 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
 
   ```
   sudo apt install policycoreutils selinux-utils selinux-basics
-  ``` 
+  ```
 
 - set selinux `/etc/selinux/config` to disabled presistent 
 
   ```
   SELINUX=disabled
   ```
+  
 - disable swap partition comment line contain swap in file `/etc/fstab`
 
 - verify worker has been joined to cluster 
 
-### 6 others
+  
+
+### 6 remove node from cluster
+
+- on master
+
+  ```
+  kubectl drain k8s-gpu-node1 --delete-local-data --force --ignore-daemonsets
+  kubectl delete node k8s-gpu-node1
+  ```
+
+- on slave
+
+  - reset
+
+    ```
+    kubeadm reset
+    rm /etc/kubernetes -rf
+    ```
+
+  - fetch join command 
+
+    ```
+    kubeadm token create --print-join-command
+    ```
+
+  - execute join command 
+
+### 7 others
 
 - query token shell 
 
