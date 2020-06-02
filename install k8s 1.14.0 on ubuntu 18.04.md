@@ -166,6 +166,18 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
   ```
   kubectl apply -f ./nvidia/nvidia-device-plugin.yml
   ```
+- install selinux tools
+
+  ```
+  sudo apt install policycoreutils selinux-utils selinux-basics
+  ``` 
+
+- set selinux `/etc/selinux/config` to disabled presistent 
+
+  ```
+  SELINUX=disabled
+  ```
+- disable swap partition comment line contain swap in file `/etc/fstab`
 
 - verify master has been finished successfully
 
