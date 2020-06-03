@@ -257,5 +257,14 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
   sudo hostnamectl set-hostname prd-k8s-master
   ```
 
+- install nvidia driver 
+
+  ```
+  sudo add-apt-repository ppa:graphics-drivers/ppa
+  apt install ubuntu-drivers-common
+  sudo ubuntu-drivers devices
+  sudo ubuntu-drivers autoinstall
+  ```
+
   
 
