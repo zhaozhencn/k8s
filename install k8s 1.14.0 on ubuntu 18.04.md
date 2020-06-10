@@ -103,9 +103,11 @@
 
 ### 4 Install k8s master
 
-```
+```F#
 kubeadm init --image-repository=registry.aliyuncs.com/google_containers --pod-network-cidr=10.245.0.0/16 --apiserver-advertise-address=<192.168.1.194> --kubernetes-version=v1.14.0 --node-name=<prd-k8s-master> --ignore-preflight-errors=all
 ```
+
+##### ``` 需确保 flannel configMap中配置 与 <10.245.0.0/16>  一致``` 
 
 - assign privileges to root
 
